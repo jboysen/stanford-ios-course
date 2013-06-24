@@ -1,0 +1,7 @@
+# Assigment 5
+
+* Some of the code is reuse from the Shutterbug demo.
+* The method `- (void) setNetworkActivityIndicatorVisible:YES]` in `SPoTAppDelegate` is used to control the network activity indicator. An atomic integer property keeps track of how many times the method is called and turns the indicator on/off depending on the value of that variable. The network indicator can then simply be turned on and of with `[(SPoTAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];`.
+* The `PhotoCache` class has two methods `setValue` and `getValue`: The first will save the given NSData object in the cache directory (with a key calculated from the ImageURL) and afterwards traverse the files in the cache directory sorted by `NSURLContentAccessDateKey` and delete the oldest files until the size of the cache directory is <= 10MB. 
+* The `PhotoCache` is only responsible for storing and getting data from the storage, not for getting data from the internet.
+* The `ImageViewController` will first ask the `PhotoCache` for the data of a specific `ImageURL`, if `nil` is returned it is up to the `ImageViewController` to get the data from the internet and ask the `PhotoCache` to store it afterwards.
